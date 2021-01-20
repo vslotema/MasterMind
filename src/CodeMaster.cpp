@@ -4,6 +4,8 @@
 #include <stdlib.h>
 #include <ctime>
 #include "../header files/Pegs.h"
+#include "../header files/CodeBreaker.h"
+
 using namespace std;
 
 void CodeMaster::setUpCode(bool duplicate)
@@ -23,7 +25,7 @@ void CodeMaster::setUpCode(bool duplicate)
 
 bool CodeMaster::foundDuplicates()
 {
-    cout << "Pegs " << code << endl;
+
     for (int i = 0; i < 4; i++)
     {
         for (int j = 0; j < 4; j++)

@@ -18,10 +18,6 @@ public:
     void setUp();
     void printRules();
     void printStats();
-    bool isLegalCodePeg(char p);
-    bool isLegalGuess(std::string guess);
-    std::string getCorrectGuessFormat(std::string guess);
-    std::string getGuess();
     bool isCorrectGuess(std::string feedback);
     void runGame();
 };
