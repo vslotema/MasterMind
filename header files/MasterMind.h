@@ -1,5 +1,4 @@
 #pragma once
-
 #include "./CodeMaster.h"
 
 class MasterMind
@@ -19,5 +18,7 @@ public:
     void printRules();
     void printStats();
     bool isCorrectGuess(std::string feedback);
+    void printWon(); 
+    void printLost(); 
     void runGame();
 };

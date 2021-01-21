@@ -22,7 +22,6 @@ void CodeMaster::setUpCode(bool duplicate)
 
     } while (!duplicate && foundDuplicates());
 }
-
 bool CodeMaster::foundDuplicates()
 {
 

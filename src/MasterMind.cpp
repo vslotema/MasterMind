@@ -5,6 +5,7 @@
 #include "../header files/Board.h"
 #include "../header files/Pegs.h"
 #include "../header files/CodeBreaker.h"
+
 using namespace std;
 
 MasterMind::MasterMind()
@@ -19,9 +20,14 @@ void MasterMind::setUp()
 {
     char dup;
     cout << "Welcome to MasterMind!" << endl;
-    cout << "How many rounds would you like to play?  " << endl;
-    cin >> this->rounds;
-    cout << "Would you like to play with code pegs of the same color? [y/n] " << endl;
+    cout << "How many rounds would you like to play? Choose an even number. ";
+    this->rounds = 1;
+    while (this->rounds % 2 != 0)
+    {
+        cin >> this->rounds;
+    }
+
+    cout << "Would you like to play with code pegs of the same color? [y/n] ";
     while (dup != 'y' && dup != 'n')
     {
         cin >> dup;
@@ -61,12 +67,26 @@ bool MasterMind::isCorrectGuess(string feedback)
         if (feedback[i] != 'B')
             return false;
     }
-    // system("clear");
-    cout << "CONGRATULATIONS YOU HAVE WON THIS ROUND!!!!" << endl;
 
     this->won += 1;
 
     return true;
+}
+
+void MasterMind::printWon()
+{
+    cout << "\nCONGRATULATIONS YOU HAVE WON THIS ROUND!!!!" << endl;
+    std::cout << "Press enter to play the next round!";
+    std::cin.get();
+}
+
+void MasterMind::printLost()
+{
+    cout << "\nSorry you have lost this round :(" << endl;
+    cout << "The code was ";
+    cout << cm.getCode() << endl;
+    std::cout << "Press enter to play the next round!";
+    std::cin.get();
 }
 
 void MasterMind::runGame()
@@ -80,9 +100,11 @@ void MasterMind::runGame()
         cm.setUpCode(duplicate);
         this->nRounds += 1;
         int prevWon = won;
+        
         while (guessNum <= totalGuesses && !isCorrectGuess(feedback))
         {
             system("clear");
+            cout << cm.getCode() << endl;
             printRules();
             b.showBoard();
             printStats();
@@ -94,14 +116,11 @@ void MasterMind::runGame()
             b.setNewFeedBack(feedback, guessNum);
             guessNum += 1;
         }
-        if (prevWon == won)
-        {
-            cout << "Sorry you have lost this round :(" << endl;
-            cout << "The code was ";
-            cout << cm.getCode() << endl;
-        }
 
-        usleep(4e+6);
+        if (prevWon == won)
+            printLost();
+        else
+            printWon();
     }
 
     system("clear");
