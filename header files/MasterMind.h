@@ -20,5 +20,6 @@ public:
     bool isCorrectGuess(std::string feedback);
     void printWon(); 
     void printLost(); 
+    void gameOver(); 
     void runGame();
 };

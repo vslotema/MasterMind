@@ -58,7 +58,7 @@ string CodeMaster::analyzeGuess(string guess)
             if (guess[i] == code[i]) //Found right position and right number
             {
                 keyPegs[i] = Pegs::getKeyPeg(0); //Retrieve black peg
-                mark[j] = 1;
+                mark[i] = 1;
                 break;
             }
             else if (mark[j] == 0 && guess[i] == code[j])

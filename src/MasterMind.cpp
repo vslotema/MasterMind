@@ -89,6 +89,20 @@ void MasterMind::printLost()
     std::cin.get();
 }
 
+void MasterMind::gameOver()
+{
+    system("clear");
+    cout << "GAME OVER!" << endl;
+    if (won > rounds / 2)
+    {
+        printf("CONGRATS YOU HAVE WON THIS GAME WITH A TOTAL OF: %i OUT OF %i \n", won, rounds);
+    }
+    else
+    {
+        cout << "Sorry you have lost this game :(" << endl;
+    }
+    usleep(5e+6);
+}
 void MasterMind::runGame()
 {
 
@@ -100,11 +114,10 @@ void MasterMind::runGame()
         cm.setUpCode(duplicate);
         this->nRounds += 1;
         int prevWon = won;
-        
+
         while (guessNum <= totalGuesses && !isCorrectGuess(feedback))
         {
             system("clear");
-            cout << cm.getCode() << endl;
             printRules();
             b.showBoard();
             printStats();
@@ -123,15 +136,5 @@ void MasterMind::runGame()
             printWon();
     }
 
-    system("clear");
-    cout << "GAME OVER!" << endl;
-    if (won > rounds / 2)
-    {
-        printf("CONGRATS YOU HAVE WON THIS GAME WITH A TOTAL OF: %i OUT OF %i \n", won, rounds);
-    }
-    else
-    {
-        cout << "Sorry you have lost this game :(" << endl;
-    }
-    usleep(5e+6);
+    gameOver();
 }
